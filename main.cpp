@@ -460,18 +460,35 @@ public:
             return;
         }
     }
+
+    int getState()
+    {
+        return board.checkGameState();
+    }
 };
+
+/*
+   The user will make a move by entering a number.
+       0 denotes left
+       1 denotes right
+       2 denotes top
+       3 denotes bottom
+   */
 
 int main()
 {
     Game game_2048(4);
 
-    game_2048.makeMove(0);
-    game_2048.makeMove(1);
-    game_2048.makeMove(2);
-    game_2048.makeMove(3);
-    game_2048.makeMove(0);
-    game_2048.makeMove(1);
-    game_2048.makeMove(2);
-    game_2048.makeMove(3);
+    while (game_2048.getState() == 2)
+    {
+        cout << "Enter your move 0 --> left, 1 --> right, 2 --> top, 3 --> bottom, -1 --> abort game" << endl;
+        int input;
+        cin >> input;
+        if (input == -1)
+        {
+            cout << "Game aborted" << endl;
+            break;
+        }
+        game_2048.makeMove(input);
+    }
 }
